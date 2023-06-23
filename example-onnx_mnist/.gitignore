@@ -1,0 +1,7 @@
+obj/
+packages/
+addons/ofxOnnxRuntime/src/*.obj
+bin/*.exe
+bin/*.exp
+bin/*.lib
+bin/*.dll

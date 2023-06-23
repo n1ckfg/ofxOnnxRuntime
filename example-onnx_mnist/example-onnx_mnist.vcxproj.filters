@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxOnnxRuntime\src\ofxOnnxRuntime.cpp">
+      <Filter>addons\ofxOnnxRuntime\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOnnxRuntime">
+      <UniqueIdentifier>{B2805217-D47A-F7DD-A7AF-8D18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOnnxRuntime\src">
+      <UniqueIdentifier>{777F629A-3A26-B56D-9CB2-EA0F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOnnxRuntime\libs">
+      <UniqueIdentifier>{1957185A-4C56-05D5-22C3-506F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOnnxRuntime\libs\onnxruntime">
+      <UniqueIdentifier>{226F0151-599A-18A2-5883-2B51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxOnnxRuntime\libs\onnxruntime\include">
+      <UniqueIdentifier>{DCB6C37F-7E3B-AC1A-7036-FE84}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\src\ofxOnnxRuntime.h">
+      <Filter>addons\ofxOnnxRuntime\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\cpu_provider_factory.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\onnxruntime_cxx_api.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\onnxruntime_cxx_inline.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\onnxruntime_c_api.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\onnxruntime_run_options_config_keys.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\onnxruntime_session_options_config_keys.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\provider_options.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxOnnxRuntime\libs\onnxruntime\include\tensorrt_provider_factory.h">
+      <Filter>addons\ofxOnnxRuntime\libs\onnxruntime\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
