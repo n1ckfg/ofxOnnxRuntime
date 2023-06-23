@@ -18,11 +18,11 @@ void ofApp::setup() {
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
 
-#ifdef _MSC_VER
-    mnist2.setup("mnist-8.onnx", ofxOnnxRuntime::BaseSetting{ ofxOnnxRuntime::INFER_TENSORRT });
-#else
+//#ifdef _MSC_VER
+    //mnist2.setup("mnist-8.onnx", ofxOnnxRuntime::BaseSetting{ ofxOnnxRuntime::INFER_TENSORRT });
+//#else
     mnist2.setup("mnist-8.onnx");
-#endif
+//#endif
     fbo_render.allocate(280, 280, GL_RGB, 0);
     fbo_render.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
     fbo_render.begin();
