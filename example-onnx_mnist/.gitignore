@@ -5,3 +5,4 @@ bin/*.exe
 bin/*.exp
 bin/*.lib
 bin/*.dll
+.vs/
