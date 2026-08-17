@@ -33,6 +33,11 @@ namespace ofxOnnxRuntime
 	protected:
 		Ort::Env ort_env;
 		std::shared_ptr<Ort::Session> ort_session;
+		// onnxruntime >= 1.12 hands back allocator-owned strings instead of raw
+		// char*, so the names are stored here and the char* vectors below just
+		// point into them.
+		std::vector<std::string> input_node_names_storage;
+		std::vector<std::string> output_node_names_storage;
 		std::vector<const char *> input_node_names;
 		std::vector<int64_t> input_node_dims; // 1 input only.
 		std::size_t input_tensor_size = 1;

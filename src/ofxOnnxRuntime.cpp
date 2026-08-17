@@ -50,27 +50,36 @@ namespace ofxOnnxRuntime
 		Ort::AllocatorWithDefaultOptions allocator;
 
 		// 2. input name & input dims
-		auto* input_name = ort_session->GetInputName(0, allocator);
+		input_node_names_storage.assign(1, ort_session->GetInputNameAllocated(0, allocator).get());
 		input_node_names.resize(1);
-		input_node_names[0] = input_name;
+		input_node_names[0] = input_node_names_storage[0].c_str();
 
 		// 3. type info.
 		Ort::TypeInfo type_info = ort_session->GetInputTypeInfo(0);
 		auto tensor_info = type_info.GetTensorTypeAndShapeInfo();
 		input_tensor_size = 1;
 		input_node_dims = tensor_info.GetShape();
-		for (unsigned int i = 0; i < input_node_dims.size(); ++i)
+		for (unsigned int i = 0; i < input_node_dims.size(); ++i) {
+			// Dynamic axes are reported as -1. Multiplying those in would wrap
+			// the unsigned size and blow up the resize below, so treat them as 1.
+			// Callers that know the real size (from the export's "imgsz"
+			// metadata, say) can overwrite input_node_dims and resize
+			// input_values_handler afterwards.
+			if (input_node_dims.at(i) < 1) input_node_dims.at(i) = 1;
 			input_tensor_size *= input_node_dims.at(i);
+		}
 		input_values_handler.resize(input_tensor_size);
 
 		// 4. output names & output dimms
 		num_outputs = ort_session->GetOutputCount();
 		output_node_names.resize(num_outputs);
+		output_node_names_storage.resize(num_outputs);
 		output_node_dims.clear();
 		output_values.clear();
 		for (unsigned int i = 0; i < num_outputs; ++i)
 		{
-			output_node_names[i] = ort_session->GetOutputName(i, allocator);
+			output_node_names_storage[i] = ort_session->GetOutputNameAllocated(i, allocator).get();
+			output_node_names[i] = output_node_names_storage[i].c_str();
 			Ort::TypeInfo output_type_info = ort_session->GetOutputTypeInfo(i);
 			auto output_tensor_info = output_type_info.GetTensorTypeAndShapeInfo();
 			auto output_dims = output_tensor_info.GetShape();

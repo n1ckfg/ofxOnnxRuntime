@@ -39,7 +39,9 @@ void ofApp::setup() {
 
     mnist_result.resize(10);
     
-    cerr << "API : " << Ort::Global<void>::api_ << endl;
+    // Ort::Global<void>::api_ was removed after onnxruntime 1.11; the version
+    // string is more informative than the old API pointer anyway.
+    std::cerr << "ONNX Runtime : " << Ort::GetVersionString() << endl;
 }
 
 void ofApp::update() {
