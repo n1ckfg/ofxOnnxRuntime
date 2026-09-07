@@ -19,3 +19,9 @@ osx:
 	ADDON_LDFLAGS += -Wl,-rpath,@executable_path/../../..
 vs:
 
+linuxaarch64:
+	ADDON_LIBS = libs/onnxruntime/lib/linuxaarch64/libonnxruntime.so
+
+linux64:
+	ADDON_LIBS = libs/onnxruntime/lib/linux64/libonnxruntime.so
+
