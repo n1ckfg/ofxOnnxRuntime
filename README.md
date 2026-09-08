@@ -4,9 +4,19 @@
 !['test'](screenshot.png)
 
 ## Installation
-- macOS
-    - copy `libonnxruntime.1.10.0.dylib` to `/usr/local/lib` 
+
+The prebuilt runtimes ship with the addon under `libs/onnxruntime/lib/<platform>/`,
+so a clone is ready to build. openFrameworks copies the shared library next to the
+executable (`bin/`) as part of the build, and nothing in `bin/` needs to be committed.
+
+- macOS (Apple Silicon)
+    - `libs/onnxruntime/lib/osx/libonnxruntime.1.dylib` is bundled; the Xcode project
+      links against it directly and the `@executable_path` rpaths in `addon_config.mk`
+      let the app find it at runtime.
     - Generate a project using ProjectGenerator.
+- Linux (aarch64 / Raspberry Pi)
+    - `libs/onnxruntime/lib/linuxaarch64/libonnxruntime.so*` is bundled.
+    - Build with the makefile: `cd example-onnx_mnist && make`, then `make RunRelease`.
 - Windows
     - There are two ways to install ONNX Runtime on your project.
     1. Install using NuGet
@@ -23,9 +33,10 @@
 ## Tested environment
 - oF 0.11.2 + MacBookPro 2018 Intel + macOS Catalina
 - oF 0.11.2 + VS2017 + Windows 10 + RTX2080Ti + CUDA 11.4
+- oF 0.12.1 + Raspberry Pi 4 (Cortex-A72) + Raspberry Pi OS Bookworm aarch64 + onnxruntime 1.29.0 (CPU)
 
 ## ToDo
-- check M1 Mac (should work), Linux CPU&GPU
+- check Linux GPU
 
 ## Reference Implementation
 - I heavily referred [Lite.AI.ToolKit](https://github.com/DefTruth/lite.ai.toolkit) implementation.

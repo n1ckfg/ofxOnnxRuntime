@@ -1,55 +1,47 @@
 #########################
-# openFrameworks patterns
+# ofxOnnxRuntime
 #########################
 
-# build files
-openFrameworks.a
-openFrameworksDebug.a
-openFrameworksUniversal.a
-libs/openFrameworksCompiled/lib/*/*
-!libs/openFrameworksCompiled/lib/*/.gitkeep
+# NOTE: this file used to be a verbatim copy of the openFrameworks *core*
+# .gitignore. Those rules are written for an OF root checkout, and two of
+# them quietly broke this addon:
+#
+#   /libs/*      -- meant to drop OF's downloaded core libs, but here it
+#                   matched libs/onnxruntime/lib/**, i.e. the prebuilt ONNX
+#                   Runtime binaries that ARE this addon's payload, plus any
+#                   header added after the rule landed.
+#   addons/*, apps/*, libs/openFrameworksCompiled/*
+#                -- paths that only exist in an OF root, never in an addon.
+#
+# So: no blanket /libs/* rule here. libs/onnxruntime/{include,lib} is tracked
+# on purpose; that is what a fresh clone links against.
 
-# apothecary
-scripts/apothecary
+# Build output. The example's bin/ is repopulated on every build: openFrameworks'
+# copyaddonslibs step copies libs/onnxruntime/lib/<platform>/ into it, so the
+# runtime libraries and the executable must not be committed from there.
+# (the ** prefix matters: a pattern with an interior '/' is anchored to
+# this file's directory, so a bare 'bin/*' would only match a bin/ at the
+# repo root and miss example-onnx_mnist/bin/.)
+[Oo]bj/
+**/[Bb]in/*
+!**/[Bb]in/data
 
-# rule to avoid non-official addons going into git
-# see addons/.gitignore
-addons/*
-
-# rule to avoid non-official apps going into git
-# see apps/.gitignore
-apps/*
-
-# rule to ignore compiled / downloaded libs
-/libs/*
-!/libs/openFrameworks
-!/libs/openFrameworksCompiled
-
-# also, see examples/.gitignore
+# Upstream release archive and packaging metadata that ship inside the
+# onnxruntime tarball. The .pc/cmake files hardcode a /usr/local + lib64
+# prefix and are meaningless to an openFrameworks build.
+libs/onnxruntime/lib/**/*.tgz
+libs/onnxruntime/lib/**/cmake/
+libs/onnxruntime/lib/**/pkgconfig/
 
 #########################
 # general
 #########################
 
-[Bb]uild/
-[Oo]bj/
 *.o
-examples/**/[Dd]ebug*/
-examples/**/[Rr]elease*/
-examples/**/gcc-debug/
-examples/**/gcc-release/
-tests/**/[Dd]ebug*/
-tests/**/[Rr]elease*/
-tests/**/gcc-debug/
-tests/**/gcc-release/
-*.mode*
-*.app/
-*.pyc
-.svn/
+*.obj
+[Bb]uild/
 *.log
-*.cpp.eep
-*.cpp.elf
-*.cpp.hex
+packages/
 
 #########################
 # IDE
@@ -61,13 +53,8 @@ tests/**/gcc-release/
 *.perspectivev3
 *.mode1v3
 *.mode2v3
-# XCode 4
 xcuserdata
 *.xcworkspace
-
-# Code::Blocks
-*.depend
-*.layout
 
 # Visual Studio
 *.sdf
@@ -77,24 +64,12 @@ xcuserdata
 *.ilk
 *.aps
 ipch/
-
-# Eclipse
-.metadata
-local.properties
-.externalToolBuilders
-
-# Android Studio
-.idea
-.gradle
-gradle
-gradlew
-gradlew.bat
+.vs/
 
 # QtCreator
 *.qbs.user
 *.pro.user
 *.pri
-
 
 #########################
 # operating system
@@ -102,38 +77,13 @@ gradlew.bat
 
 # Linux
 *~
-# KDE
 .directory
-.AppleDouble
 
 # OSX
 .DS_Store
 *.swp
-*~.nib
-# Thumbnails
 ._*
-examples/ios/**/mediaAssets
 
 # Windows
-# Windows image file caches
 Thumbs.db
-# Folder config file
 Desktop.ini
-
-# Android
-.csettings
-/libs/openFrameworksCompiled/project/android/paths.make
-
-# Android Studio
-*.iml
-
-#########################
-# miscellaneous
-#########################
-
-.mailmap
-/apps*/
-[Bb]in/*
-![Bb]in/data
-*.db
-.vs/
